@@ -11,7 +11,7 @@ jobs:
         run: npm install -g pnpm
       - uses: actions/checkout@v3
       - run: ls -al
-      - run: cd vite-project | cat ls -al
+      - run: cd vite-project; ls -al
       - name: Install Dependencies # 의존 파일 설치
         run: pnpm install
       - name: 빌드 실행
