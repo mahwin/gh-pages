@@ -4,7 +4,7 @@ jobs:
   checkout:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3 fe-dev # checkout v3가 제일 최신 커밋을 의미함.
+      - uses: actions/checkout@fe-dev # checkout v3가 제일 최신 커밋을 의미함.
         with:
           path: vite-project
       - run: ls -al vite-project
