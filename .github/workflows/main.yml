@@ -9,8 +9,10 @@ jobs:
     steps:
       - name: Install pnpm
         run: npm install -g pnpm
-      - name: ls -l
+      - name: ls -l 체크
         run: ls -l
+      - name: pwd 체크
+        run: pwd
       - name: Install Dependencies # 의존 파일 설치
         run: pnpm install
       - name: 빌드 실행
