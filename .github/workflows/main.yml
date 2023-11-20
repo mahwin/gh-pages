@@ -1,12 +1,11 @@
 name: fe-dev 브랜치 깃허브 페이지스에 배포
 on:
-  pull_request: # fe-dev 브랜치에 pr이 Merge 됐을 때 실행해라!
-    branches: ["fe-dev"]
-    types: closed
+  push: # fe-dev 브랜치에 pr이 Merge 됐을 때 실행해라!
+    branches: ["main"]
+    
 jobs:
-  if_merged:
-    if: github.event.pull_request.merged == true
-    runs-on: ubuntu-latest
+  deploy:
+    runs-on: ubuntu-latest    
     steps:
       - name: Install Dependencies # 의존 파일 설치
         run: pnpm install
