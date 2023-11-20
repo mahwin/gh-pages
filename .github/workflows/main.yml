@@ -9,6 +9,9 @@ jobs:
     steps:
       - name: Install pnpm
         run: npm install -g pnpm
+      - uses: actions/checkout@v3
+      - run: ls -al
+      - run: cat .github/workflows/checkout.yml
       - name: ls -al 체크
         run: ls -al
       - name: pwd 체크
