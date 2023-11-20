@@ -4,7 +4,9 @@ jobs:
   checkout:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@fe-dev # checkout v3가 제일 최신 커밋을 의미함.
+      - uses: actions/checkout # checkout v3가 제일 최신 커밋을 의미함.
         with:
+          ref: ${{ github.ref }}
+          fetch-depth: 0
           path: vite-project
       - run: ls -al vite-project
