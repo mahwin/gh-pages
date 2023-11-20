@@ -11,6 +11,7 @@ jobs:
         run: npm install -g pnpm
       - uses: actions/checkout@v3
       - run: ls -al
+      - run: cd vite-project | ls -al
     
      
      
