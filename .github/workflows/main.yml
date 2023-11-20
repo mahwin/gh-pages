@@ -13,6 +13,7 @@ jobs:
       - run: ls -al
       - run: cd vite-project; ls -al
       - name: Install Dependencies # 의존 파일 설치
-        run: pnpm install
+        run: cd vite-project; pnpm install
       - name: 빌드 실행
-        run: pnpm run build
+        run: cd vite-project; pnpm run build
+        
