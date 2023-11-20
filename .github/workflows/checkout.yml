@@ -4,5 +4,7 @@ jobs:
   checkout:
     runs-on: ubuntu-latest
     steps:
-      - run: ls -al
       - uses: actions/checkout@v3
+        with:
+          path: vite-project
+      - run: ls -al vite-project
