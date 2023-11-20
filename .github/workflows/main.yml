@@ -16,6 +16,8 @@ jobs:
         run: ls -al
       - name: 빌드할 폴더로 이동
         run: cd ./vite-project
+      - name: ls -al 제대로 이동했는지 체크
+        run: ls -al
       - name: Install Dependencies # 의존 파일 설치
         run: pnpm install
       - name: 빌드 실행
