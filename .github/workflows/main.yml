@@ -14,8 +14,8 @@ jobs:
       - run: cat .github/workflows/checkout.yml
       - name: ls -al 체크
         run: ls -al
-      - name: pwd 체크
-        run: pwd
+      - name: 빌드할 폴더로 이동
+        run: cd ./vite-project
       - name: Install Dependencies # 의존 파일 설치
         run: pnpm install
       - name: 빌드 실행
