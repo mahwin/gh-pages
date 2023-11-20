@@ -7,6 +7,8 @@ jobs:
   deploy:
     runs-on: ubuntu-latest    
     steps:
+      - name: Install pnpm
+        run: npm install -g pnpm
       - name: Install Dependencies # 의존 파일 설치
         run: pnpm install
       - name: 빌드 실행
