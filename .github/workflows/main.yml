@@ -8,6 +8,8 @@ jobs:
     if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     steps:
+      - name: Echo
+        run: echo $PWD
       - name: Install pnpm
         run: npm install -g pnpm
       - name: Install Dependencies # 의존 파일 설치
