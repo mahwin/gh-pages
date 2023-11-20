@@ -9,15 +9,13 @@ jobs:
     steps:
       - name: Install pnpm
         run: npm install -g pnpm
-      - run: actions/checkout@v3
+      - uses: actions/checkout@v3
       - run: ls -al
-      - run: cat .github/workflows/checkout.yml
-      - name: ls -al 체크
-        run: ls -al
+      - run: cat .github/workflows/checkout.yml 
+      - run: ls -al
       - name: 빌드할 폴더로 이동
-        run: cd vite-project
-      - name: ls -al 제대로 이동했는지 체크
-        run: ls -al
+      - run: cd vite-project      
+      - run: ls -al
       - name: Install Dependencies # 의존 파일 설치
         run: pnpm install
       - name: 빌드 실행
