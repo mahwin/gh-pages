@@ -1,6 +1,9 @@
-name: Our Workflow
-on: push
-jobs:
+name: fe-dev 브랜치 깃허브 페이지스에 배포
+on:
+  pull_request: # fe-dev 브랜치에 pr이 Merge 됐을 때 실행해라!
+    branches: ["fe-dev"]
+    types: closed
+jobs: 
   checkout:
     runs-on: ubuntu-latest
     steps:
