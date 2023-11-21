@@ -21,4 +21,5 @@ jobs:
         run: cd vite-project; pnpm run build # vite-project 폴더에 들어가서 build 해라
       - uses: peaceiris/actions-gh-pages@v3
         with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./dist
