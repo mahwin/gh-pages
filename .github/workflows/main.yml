@@ -22,6 +22,6 @@ jobs:
       - name: github identity 설정 이메일
         run: git config --global user.email "mahwin7085@gmail.com"
       - name: github identity 설정 이름
-        run: git config --global user.name "mahwin"
+        run: git config --global user.name "youseock"
       - name: Deploy to gh-pages # vite-project 폴더에 들어가서 deploy해라
         run: cd vite-project; pnpm run deploy
