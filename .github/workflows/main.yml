@@ -1,33 +1,37 @@
-# name: fe-dev 브랜치 깃허브 페이지스에 배포
-# on:
-#   pull_request: # fe-dev 브랜치에 pr이 Merge 됐을 때 실행해라!
-#     branches: ["fe-dev"]
-#     types: closed
+name: fe-dev 브랜치 깃허브 페이지스에 배포
+on:
+  pull_request: # fe-dev 브랜치에 pr이 Merge 됐을 때 실행해라!
+    branches: ["fe-dev"]
+    types: closed
 
-# #  GITHUB_TOKEN의 권한을 설정하여 GitHub Pages에 배포할 수 있도록 함
-# # permissions:
-# #   contents: read
-# #   pages: write
-# #   id-token: write
+#  GITHUB_TOKEN의 권한을 설정하여 GitHub Pages에 배포할 수 있도록 함
+# permissions:
+#   contents: read
+#   pages: write
+#   id-token: write
 
-# jobs:
-#   if_merged:
-#     if: github.event.pull_request.merged == true
-#     runs-on: ubuntu-latest
-#     steps:
-#       - name: Install pnpm
-#         run: npm install -g pnpm
-#       - uses: actions/checkout@v3 # 최신 버전의 커밋 가져와라
-#       - name: ls -al
-#         run: cd vite-project; ls -al
-#       - name: branch 이동 fe-dev
-#         run: git switch fe-dev
-#       - name: Install Dependencies # 의존 파일 설치
-#         run: cd vite-project; pnpm install # vite-project 폴더에 들어가서 의존성 설치해라
-#       - name: 빌드 실행
-#         run: cd vite-project; pnpm run build # vite-project 폴더에 들어가서 build 해라
-#       - name: 빌드 파일 확인
-#         run: cd vite-project/dist; ls -al # dist 폴더에 들어가서 빌드 파일 확인해라
+jobs:
+  if_merged:
+    if: github.event.pull_request.merged == true
+
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install pnpm
+        run: npm install -g pnpm
+      - uses: actions/checkout@v3 # 최신 버전의 커밋 가져와라
+      - name: ls -al
+        run: cd vite-project; ls -al
+      - name: branch 이동 fe-dev
+        run: git switch fe-dev
+      - name: Install Dependencies # 의존 파일 설치
+        run: cd vite-project; pnpm install # vite-project 폴더에 들어가서 의존성 설치해라
+      - name: 빌드 실행
+        run: cd vite-project; pnpm run build # vite-project 폴더에 들어가서 build 해라
+      - name: 빌드 파일 확인
+        run: cd vite-project/dist; ls -al # dist 폴더에 들어가서 빌드 파일 확인해라
+      - name: Deploy to GitHub Pages
+        id: delpoyment
+        uses: actions/deploy-pages@v2
 # - name: 서버 실행
 # run: cd vite-project; npm run preview # vite-project 폴더에 들어가서 build 해라
 
@@ -44,54 +48,3 @@
 #   id: deployment
 #   uses: actions/deploy-pages@v2
 
-# GitHub Pages에 정적 콘텐츠를 배포하기 위한 간단한 워크플로우
-name: Deploy static content to Pages
-
-on:
-  # 기본 브랜치에 대한 푸시 이벤트 발생 시 실행
-  push:
-    branches: ["fe-dev"]
-
-  # Actions 탭에서 수동으로 워크플로우를 실행할 수 있도록 구성
-  workflow_dispatch:
-
-# GITHUB_TOKEN의 권한을 설정하여 GitHub Pages에 배포할 수 있도록 함
-permissions:
-  contents: read
-  pages: write
-  id-token: write
-
-# 동시에 하나의 배포만 허용하도록 구성
-concurrency:
-  group: "pages"
-  cancel-in-progress: true
-
-jobs:
-  # 단순히 배포만 수행하기에 하나의 잡으로만 구성
-  deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-      - name: Set up Node
-        uses: actions/setup-node@v3
-        with:
-          node-version: 18
-          cache: "npm"
-      - name: Install dependencies
-        run: npm install
-      - name: Build
-        run: npm run build
-      - name: Setup Pages
-        uses: actions/configure-pages@v3
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v2
-        with:
-          # dist 디렉터리 업로드
-          path: "./dist"
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v2
