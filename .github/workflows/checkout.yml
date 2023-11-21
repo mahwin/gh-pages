@@ -1,12 +1,13 @@
-name: Our Workflow
-on: push
-jobs:
+name: fe-dev 브랜치 깃허브 페이지스에 배포
+on:
+  pull_request: # fe-dev 브랜치에 pr이 Merge 됐을 때 실행해라!
+    branches: ["fe-dev"]
+    types: closed
+jobs: 
   checkout:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout # checkout v3가 제일 최신 커밋을 의미함.
+      - uses: actions/checkout@v3
         with:
-          ref: ${{ github.ref }}
-          fetch-depth: 0
           path: vite-project
       - run: ls -al vite-project
