@@ -12,9 +12,10 @@ jobs:
       - name: Install pnpm
         run: npm install -g pnpm
       - uses: actions/checkout@v3 # 최신 버전의 커밋 가져와라
-      - run: ls -al
-      - run: cd vite-project; ls -al
-      - run: git switch fe-dev
+      - name: ls -al
+        run: cd vite-project; ls -al
+      - name: branch 이동 fe-dev
+        run: git switch fe-dev
       - name: Install Dependencies # 의존 파일 설치
         run: cd vite-project; pnpm install # vite-project 폴더에 들어가서 의존성 설치해라
       - name: 빌드 실행
@@ -22,6 +23,8 @@ jobs:
 
       - name: Setup Pages
         uses: actions/configure-pages@v3
+      - name: ls -al
+        run: cd vite-project; ls -al
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v2
         with:
