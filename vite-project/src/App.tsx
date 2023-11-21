@@ -5,3 +5,11 @@ function App() {
 }
 
 export default App;
+
+function App() {
+  try {
+    return 3;
+  } finally {
+    console.log("!");
+  }
+}
