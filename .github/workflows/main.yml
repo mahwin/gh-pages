@@ -14,10 +14,8 @@ jobs:
         run: npm install -g pnpm
       - uses: actions/checkout@v3   # 최신 버전의 커밋 가져와라
       - run: ls -al
-      - run: cd vite-project; ls -al 
-
-
-
+      - run: cd vite-project; ls -al
+      - run: git branch fe-dev
       - name: Install Dependencies # 의존 파일 설치
         run: cd vite-project; pnpm install # vite-project 폴더에 들어가서 의존성 설치해라
       - name: 빌드 실행
